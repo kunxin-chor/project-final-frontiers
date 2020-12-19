@@ -1,29 +1,27 @@
 <template>
        <table>
             <tr v-for='(row, rindex) in map' v-bind:key='rindex'>
-                <td v-for='(col, cindex) in row' v-bind:key='cindex' @click='mapCellClicked(rindex, cindex)'>
-                    <span v-if='isPlayerHere(rindex, cindex)'>
-                        {{player.getSymbol()}}
-                    </span>
-                    <span v-else>
-                        {{col.symbol}}
-                    </span>
-                </td>
+                <MapCell v-for='(col, cindex) in row' 
+                    :key='cindex' 
+                    :player='player'
+                    :entities='entities'
+                    :rindex ='rindex'
+                    :cindex ='cindex'
+                    :mapCell='col'
+                    @mapCellClicked='mapCellClicked'
+                />                             
             </tr>
         </table>
 </template>
 
 <script>
+import MapCell from './MapCell';
 export default {
-    props:['map', 'player'],
-    methods:{
-      isPlayerHere:function(rindex, cindex) {
-          if (this.player.pos.x == rindex && this.player.pos.y == cindex) {
-              return true;
-          } else {
-              return false;
-          }
-      },
+    components:{
+        MapCell
+    },
+    props:['map', 'player', 'entities'],
+    methods:{     
       mapCellClicked:function(rindex, cindex){
           this.$emit('mapCellClicked', rindex, cindex);
       }

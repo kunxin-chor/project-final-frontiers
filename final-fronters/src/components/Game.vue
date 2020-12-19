@@ -1,6 +1,9 @@
 <template>
     <div id="game-container">
-        <Map :map='game.getMap()' :player='game.getPlayer()' @mapCellClicked='playerClicksCell'/>
+        <Map :map='game.getMap()' 
+            :player='game.getPlayer()' 
+            :entities='game.getEntities()'
+            @mapCellClicked='playerClicksCell'/>
         <CommandPanel :commands='commands'/>
     </div>
 </template>

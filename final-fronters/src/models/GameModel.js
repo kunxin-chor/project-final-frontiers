@@ -8,12 +8,16 @@ class GameModel {
     this.currentSectorMap = this.createSectorMap();
     this.galaxyMap = [];
     this.playerShip = Ship.initDefaultShip();
-    this.entites = [];
+    this.entities = [];
+    this.initGame();
   }
 
   initGame() {
     this.entities.push(new Ship.initEnemyShip());
+  }
 
+  getEntities() {
+      return this.entities;
   }
 
   createSectorMap() {
