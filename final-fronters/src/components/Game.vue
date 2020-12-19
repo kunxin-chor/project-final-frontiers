@@ -21,6 +21,7 @@ export default {
         return {
             game: null,
             commands: null
+
         }
     },
     created() {
@@ -29,7 +30,30 @@ export default {
     },
     methods:{
         playerClicksCell:function(rindex, cindex){
-            this.commands.executeCurrentCommand(rindex, cindex)
+            if (this.gameState == 'awaiting-commands') {
+                this.commands.executeCurrentCommand(rindex, cindex)
+            }
+            if (this.gameState == 'awaiting-weapon-target') {
+                console.log("acquired target at", rindex, cindex);
+            }
+            
+        }
+    },
+    computed:{
+        gameState:function(){
+            if (this.game) {
+                return this.game.getState();
+            } else {
+                return "";
+            }
+            
+        }
+    },
+    watch:{
+        gameState:function(){
+            if (this.gameState == 'confirm-attack-target') {
+                console.log("Setup for weapon target")
+            }
         }
     }
 }

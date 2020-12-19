@@ -10,6 +10,7 @@ class GameModel {
     this.playerShip = Ship.initDefaultShip();
     this.entities = [];
     this.initGame();
+    this.gameState = "awaiting-commands"
   }
 
   initGame() {
@@ -18,6 +19,14 @@ class GameModel {
 
   getEntities() {
       return this.entities;
+  }
+
+  getState() {
+      return this.gameState;
+  }
+
+  setState(newState) {
+      this.gameState = newState;
   }
 
   createSectorMap() {

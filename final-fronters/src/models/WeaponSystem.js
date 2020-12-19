@@ -1,6 +1,8 @@
 class WeaponSystem {
     constructor(stats) {
         // todo: assign all stats
-        this = Object.assign(this, stats);
+        Object.assign(this, stats);
     }
 }
+
+export default WeaponSystem;

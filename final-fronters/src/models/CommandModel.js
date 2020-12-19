@@ -42,6 +42,7 @@ class CommandModel {
 
     firePrimary = (x, y) => {
         console.log("Firing at",x,',',y);
+        this.game.setState('confirm-attack-target');
     }
 }   
 
